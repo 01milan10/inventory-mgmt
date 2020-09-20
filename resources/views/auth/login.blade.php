@@ -1,63 +1,100 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
 
-@section('title')
-<title>Login</title>
-@endsection
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
-<div class="login-register" style="background-image:url(login-register.jpg); padding:0 !important;">
-    <div class="container">
-        <div class="row mx-auto justify-content-center align-items-center" style="height: 100vh;">
-            <div class="col-10 col-md-6">
-                <form action="{{ route('login') }}" method="POST" class="needs-validation" id="form" novalidate>
-                    @csrf()
-                    <div class="card border-primary shadow">
-                        <div class="card-title display-4 text-center">Login</div>
-                        <div class="card-body">
-                            @error('email')
-                            <div class="alert alert-danger text-center">
-                                <span class="">{{$message}}</span>
-                                <button type="button" class="close" data-dismiss="alert">
-                                    <span>×</span>
-                                </button>
-                            </div>
-                            @enderror
-                            <div class="form-group row justify-content-center">
-                                <label for="email" class="col-sm-3 col-form-label text-sm-right">Email:</label>
-                                <div class="col-sm-6 emailGroup">
-                                    <input type="email" class="form-control" id="email" placeholder="email@example.com" name="email" value="{{old('email')}}" required autofocus pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
-                                    <div class="invalid-feedback">Enter valid email</div>
-                                </div>
-                            </div>
-                            <div class="form-group row justify-content-center">
-                                <label for="inputPassword" class="col-sm-3 col-form-label text-sm-right">Password:</label>
-                                <div class="col-sm-6 input-group">
-                                    <input type="password" class="form-control" id="inputPassword" name="password" required autofocus minlength="6" />
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-primary showPassword" tabindex="-1">
-                                            <i class="fas fa-eye-slash"></i>
-                                        </button>
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Enter your password. (Min: 6 characters)
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="form-group ma-5">
-                                <div class="clearfix">
-                                    <a href="{{route('register')}}" class="btn btn-outline-primary float-left">Register</a>
-                                    <button type="submit" class="btn btn-primary float-right submit">
-                                        Login
-                                    </button>
-                                </div>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{asset('plugins/font-awesome/css/all.min.css')}}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{asset('css/adminlte.min.css')}}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="/"><b>Admin</b>LTE</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+
+                <form action="{{route('login')}}" method="post">
+                    @csrf
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Email" name="email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
                             </div>
                         </div>
                     </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
                 </form>
+
+                <div class="social-auth-links text-center mb-3">
+                    <p>- OR -</p>
+                    <a href="#" class="btn btn-block btn-primary">
+                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                    </a>
+                    <a href="#" class="btn btn-block btn-danger">
+                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                    </a>
+                </div>
+                <!-- /.social-auth-links -->
+
+                <p class="mb-1">
+                    <a href="forgot-password.html">I forgot my password</a>
+                </p>
+                <p class="mb-0">
+                    <a href="/register" class="text-center">Register a new membership</a>
+                </p>
             </div>
+            <!-- /.login-card-body -->
         </div>
     </div>
-</div>
-@endsection
+    <!-- /.login-box -->
+
+    <!-- jQuery -->
+    <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{asset('js/adminlte.min.js')}}"></script>
+
+</body>
+
+</html>

@@ -16,7 +16,7 @@
     @endif
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card mt-4">
                 <div class="card-body">
                     <h4 class="card-title">Awesome Inventory</h4>
                     <h6 class="card-subtitle">List of all available items</h6>

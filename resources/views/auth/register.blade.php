@@ -1,96 +1,112 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
 
-@section('title')
-<title>Register</title>
-@endsection
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | Registration Page</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
-<div class="login-register" style="background-image:url(login-register.jpg); padding:0 !important;">
-    <div class="container">
-        <div class="row mx-auto justify-content-center align-items-center" style="height: 100vh;">
-            <div class="col-12 col-sm-12 col-md-8">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{asset('plugins/font-awesome/css/all.min.css')}}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{asset('css/adminlte.min.css')}}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
 
-                <form action="{{ route('register') }}" method="POST" class="needs-validation" novalidate>
-                    @csrf()
-                    <div class="card border-primary shadow">
-                        <div class="card-title display-4 text-center">Register</div>
-                        <div class="card-body">
-                            @error('name')
-                            <div class="alert alert-danger">
-                                <span>{{$message}}</span>
-                                <button data-dismiss="alert">x</button>
-                            </div>
-                            @enderror
-                            @error('email')
-                            <div class="alert alert-danger">
-                                {{$message}}
-                                <button data-dismiss="alert">x</button>
+<body class="hold-transition login-page">
+    <div class="register-box">
+        <div class="register-logo">
+            <a href="/"><b>Admin</b>LTE</a>
+        </div>
 
-                            </div>
-                            @enderror
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Register a new membership</p>
 
-                            @error('password')
-                            <div class="alert alert-danger">
-                                {{$message}}
-                                <button type='button' class="close" data-dismiss="alert">x</button>
-
-                            </div>
-                            @enderror
-                            <div class="form-group row justify-content-center">
-                                <label for="name" class="col-sm-3 col-form-label text-sm-right">Name:</label>
-                                <div class="col-sm-6 ">
-                                    <input type="text" class="form-control " id="name" placeholder="Full Name" name="name" value="{{old('name')}}" required autofocus />
-                                    <div class="invalid-feedback">
-                                        Enter your name.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row justify-content-center">
-                                <label for="email" class="col-sm-3 col-form-label text-sm-right">Email:</label>
-                                <div class="col-sm-6 ">
-                                    <input type="email" class="form-control " id="email" placeholder="email@example.com" name="email" value="{{old('email')}}" required autofocus pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
-                                    <div class="invalid-feedback">
-                                        Enter your email.
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="form-group row justify-content-center">
-                                <label for="inputPassword" class="col-sm-3 col-form-label text-sm-right">Password:</label>
-                                <div class="col-sm-6 input-group ">
-                                    <input type="password" class="form-control" id="inputPassword" name="password" required autofocus minlength="6" />
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-primary showPassword" tabindex="-1">
-                                            <i class="fas fa-eye-slash"></i>
-                                        </button>
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Enter your password.(Min: 6 characters)
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row justify-content-center">
-                                <label for="password_confirmation" class="col-sm-3 col-form-label text-sm-right">Confirm Password:</label>
-                                <div class="col-sm-6 input-group">
-                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required autofocus />
-                                    <div class="invalid-feedback">
-                                        Confirm your password.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="form-group ma-5">
-                                <a href="{{route('login')}}" class="btn btn-outline-primary float-left">Login</a>
-                                <button type="submit" class="btn btn-primary float-right">
-                                    Register
-                                </button>
+                <form action="{{route('register')}}" method="post">
+                    @csrf
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Full name" name="name">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
                             </div>
                         </div>
                     </div>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Email" name="email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Retype password" name="password_confirmation">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                                <label for="agreeTerms">
+                                    I agree to the <a href="#">terms</a>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
                 </form>
+
+                <div class="social-auth-links text-center">
+                    <p>- OR -</p>
+                    <a href="#" class="btn btn-block btn-primary">
+                        <i class="fab fa-facebook mr-2"></i>
+                        Sign up using Facebook
+                    </a>
+                    <a href="#" class="btn btn-block btn-danger">
+                        <i class="fab fa-google-plus mr-2"></i>
+                        Sign up using Google+
+                    </a>
+                </div>
+
+                <a href="/login" class="text-center">I already have a membership</a>
             </div>
-        </div>
+            <!-- /.form-box -->
+        </div><!-- /.card -->
     </div>
-</div>
-@endsection
+    <!-- /.register-box -->
+
+    <!-- jQuery -->
+    <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{asset('js/adminlte.min.js')}}"></script>
+
+</body>
+
+</html>
